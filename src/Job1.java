@@ -21,12 +21,8 @@ import org.apache.hadoop.util.ToolRunner;
 /**
  * This Job is used to count number of lethal accidents 
  * per week throughout the entire dataset
- * @author Alberto
  */
 public class Job1 extends Configured implements Tool{
-		
-	// Path to temporary folder
-	private static String intermediate = "/temp";
 	
 	@Override
 	public int run(String[] arg0) throws Exception {
@@ -41,8 +37,8 @@ public class Job1 extends Configured implements Tool{
         FileOutputFormat.setOutputPath(jobConf1, out);
 
         jobConf1.setJobName("Job1");
-        jobConf1.setMapperClass(FirstMapClass.class);
-        jobConf1.setReducerClass(FirstReduceClass.class);
+        jobConf1.setMapperClass(MapClass.class);
+        jobConf1.setReducerClass(ReduceClass.class);
         jobConf1.setInputFormat(KeyValueTextInputFormat.class);
         jobConf1.set("key.value.separator.in.input.line", ",");  
         jobConf1.setOutputFormat(TextOutputFormat.class);
