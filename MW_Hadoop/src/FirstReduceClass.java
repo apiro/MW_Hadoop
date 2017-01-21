@@ -9,7 +9,7 @@ import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
 
 
-public class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, IntWritable> {
+public class FirstReduceClass extends MapReduceBase implements Reducer<Text, Text, Text, IntWritable> {
 
 	@Override
 	public void reduce(Text arg0, Iterator<Text> arg1,
