@@ -36,7 +36,6 @@ public class FirstMapClass extends MapReduceBase implements Mapper<Text, Text, T
 				String weekStr = week < 10 ? "0" + String.valueOf(week) : String.valueOf(week) ;
 				weekYear = String.valueOf(c.get(Calendar.YEAR)) + weekStr;
 			
-	
 				// Non usare StrinkTokenizer, dato che salta i tokens vuoti
 				String[]tokens = line.split(",\\s*(?=([^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 				counter += Integer.parseInt(tokens[10]==""?"0":tokens[10]);

@@ -24,13 +24,7 @@ import org.apache.hadoop.util.ToolRunner;
  * @author Alberto
  */
 public class Job1 extends Configured implements Tool{
-	
-	/*
-	 * Brainstorming. Per questo progetto credo servano 2 jobs
-	 * Il primo estrae per ogni incidente il numero di morti (data, #morti)
-	 * Il secondo raggruppa i dati del job precedente per settimana e somma il numero di morti
-	 */
-	
+		
 	// Path to temporary folder
 	private static String intermediate = "/temp";
 	
@@ -56,45 +50,7 @@ public class Job1 extends Configured implements Tool{
         jobConf1.setOutputValueClass(IntWritable.class);
         
         JobClient.runJob(jobConf1);
-        
-		/* Job 2 */
-        /*JobConf jobConf2 = new JobConf(conf, Job1.class);
 
-        Path in2 = new Path(arg0[0]);
-        Path out2 = new Path(arg0[1]);
-        FileInputFormat.setInputPaths(jobConf2, in2);
-        FileOutputFormat.setOutputPath(jobConf2, out2);
-
-        jobConf2.setJobName("Job1");
-        jobConf2.setMapperClass(FirstMapClass.class);
-        jobConf2.setReducerClass(FirstReduceClass.class);
-        jobConf2.setInputFormat(KeyValueTextInputFormat.class);
-        jobConf2.set("key.value.separator.in.input.line", ",");  
-        jobConf2.setOutputFormat(TextOutputFormat.class);
-        jobConf2.setOutputKeyClass(Text.class);
-        jobConf2.setOutputValueClass(Text.class);
-        
-        ControlledJob job1 = new ControlledJob(jobConf1);
-        ControlledJob job2 = new ControlledJob(jobConf2);
-        
-        JobControl jobControl = new JobControl("chaining");
-        jobControl.addJob(job1);
-        jobControl.addJob(job2);
-        job2.addDependingJob(job1);
-        
-        Thread t = new Thread(jobControl); 
-        t.setDaemon(true);
-        t.start(); 
-                      
-        while (!jobControl.allFinished()) { 
-          try { 
-            Thread.sleep(1000); 
-          } catch (InterruptedException e) { 
-            // Ignore. 
-          } 
-        } 
-        */
-        
 		return 0;
 	}
 	

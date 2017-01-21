@@ -9,14 +9,17 @@ import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
 
 
-public class FirstReduceClass extends MapReduceBase implements Reducer<Text, Text, Text, IntWritable> {
+public class FirstReduceClass extends MapReduceBase implements Reducer<Text, IntWritable, Text, IntWritable> {
 
 	@Override
-	public void reduce(Text arg0, Iterator<Text> arg1,
-			OutputCollector<Text, IntWritable> arg2, Reporter arg3)
-			throws IOException {
-		// TODO Auto-generated method stub
+	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter)throws IOException {
+		int deaths = 0;
 		
+		 while (values.hasNext()) {
+	            deaths += Integer.parseInt(values.next().toString());
+	        }
+		
+		output.collect(key, new IntWritable(deaths));
 	}
 
 }
