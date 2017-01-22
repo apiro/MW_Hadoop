@@ -1,3 +1,4 @@
+package job1;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -8,28 +9,22 @@ import org.apache.hadoop.mapred.FileOutputFormat;
 import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.KeyValueTextInputFormat;
-import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
-import org.apache.hadoop.mapred.jobcontrol.Job;
-import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob;
-import org.apache.hadoop.mapreduce.lib.jobcontrol.JobControl;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
-
-
 
 /**
  * This Job is used to count number of lethal accidents 
  * per week throughout the entire dataset
  */
-public class Job1 extends Configured implements Tool{
+public class MyJob extends Configured implements Tool{
 	
 	@Override
 	public int run(String[] arg0) throws Exception {
 		Configuration conf = getConf();
 		
 		/* Job 1 */
-        JobConf jobConf1 = new JobConf(conf, Job1.class);
+        JobConf jobConf1 = new JobConf(conf, MyJob.class);
 
         Path in = new Path(arg0[0]);
         Path out = new Path(arg0[1]);
@@ -51,8 +46,7 @@ public class Job1 extends Configured implements Tool{
 	}
 	
 	public static void main(String[] args) throws Exception {
-        int res = ToolRunner.run(new Configuration(), new Job1(), args);
+        int res = ToolRunner.run(new Configuration(), new MyJob(), args);
         System.exit(res);
     }
-	
 }

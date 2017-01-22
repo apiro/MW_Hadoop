@@ -1,3 +1,4 @@
+package job1;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -14,10 +15,9 @@ public class ReduceClass extends MapReduceBase implements Reducer<Text, IntWrita
 	@Override
 	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter)throws IOException {
 		int deaths = 0;
-		
-		 while (values.hasNext()) {
-	            deaths += Integer.parseInt(values.next().toString());
-	        }
+		while (values.hasNext()) {
+            deaths += Integer.parseInt(values.next().toString());
+        }
 		
 		output.collect(key, new IntWritable(deaths));
 	}

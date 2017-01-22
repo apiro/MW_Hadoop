@@ -1,3 +1,4 @@
+package job1;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -10,7 +11,6 @@ import org.apache.hadoop.mapred.MapReduceBase;
 import org.apache.hadoop.mapred.Mapper;
 import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reporter;
-
 
 public class MapClass extends MapReduceBase implements Mapper<Text, Text, Text, IntWritable> {
 	private static boolean firstLine = true;
