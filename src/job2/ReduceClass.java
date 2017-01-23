@@ -16,15 +16,17 @@ public class ReduceClass extends MapReduceBase implements Reducer<Text, Text, Te
 	public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter)throws IOException {
 		Text out = new Text();
 		
-		int totalDeaths = 0;
+		double totalDeaths = 0;
 		int numberAccidents = 0;
+		int contributionsCounter = 0;
 		
 		while (values.hasNext()) {
 			String[] vals = values.next().toString().split(",");
 			numberAccidents += Integer.parseInt(vals[1]);
 			totalDeaths += Integer.parseInt(vals[0]);
+			contributionsCounter ++;
         }
-		out.set(String.valueOf(numberAccidents) + "\t" + String.valueOf(totalDeaths));
+		out.set(String.valueOf(numberAccidents) + "\t" + String.valueOf(totalDeaths / contributionsCounter));
 		output.collect(key, out);
 	}
 }
