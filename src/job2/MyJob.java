@@ -2,12 +2,13 @@ package job2;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.FileInputFormat;
 import org.apache.hadoop.mapred.FileOutputFormat;
 import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapred.JobConf;
-import org.apache.hadoop.mapred.KeyValueTextInputFormat;
+import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
@@ -40,13 +41,11 @@ public class MyJob extends Configured implements Tool{
         jobConf1.setJobName("Job2");
         jobConf1.setMapperClass(MapClass.class);
         jobConf1.setReducerClass(ReduceClass.class);
-        jobConf1.setInputFormat(KeyValueTextInputFormat.class);
-        jobConf1.set("key.value.separator.in.input.line", ",");  
+        jobConf1.setInputFormat(TextInputFormat.class);
         jobConf1.setOutputFormat(TextOutputFormat.class);
         jobConf1.setOutputKeyClass(Text.class);
-        //jobConf1.setOutputValueClass(IntWritable.class);
-        jobConf1.setOutputValueClass(Text.class);
-        
+        jobConf1.setOutputValueClass(IntWritable.class);
+       
         JobClient.runJob(jobConf1);
 
 		return 0;
