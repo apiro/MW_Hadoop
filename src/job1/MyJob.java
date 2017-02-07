@@ -36,6 +36,7 @@ public class MyJob extends Configured implements Tool{
         jobConf1.setReducerClass(ReduceClass.class);
         jobConf1.setInputFormat(KeyValueTextInputFormat.class);
         jobConf1.set("key.value.separator.in.input.line", ",");  
+        jobConf1.set("mapreduce.output.textoutputformat.separator", ",");
         jobConf1.setOutputFormat(TextOutputFormat.class);
         jobConf1.setOutputKeyClass(Text.class);
         jobConf1.setOutputValueClass(IntWritable.class);

@@ -91,7 +91,7 @@ public class BoroughWeekWritable implements WritableComparable<BoroughWeekWritab
 
 	@Override
 	public String toString() {
-		return this.borough + "\t" + this.week;
+		return this.borough + "," + this.week;
 	}
 
 	@Override

@@ -10,22 +10,21 @@ import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
 
-public class ReduceClass extends MapReduceBase implements Reducer<BoroughWeekWritable, IntWritable, BoroughWeekWritable, Text> {
+public class ReduceClass extends MapReduceBase implements Reducer<BoroughWeekWritable, IntWritable, Text, Text> {
 	long mapperCounter;
 	
 	@Override
-	public void reduce(BoroughWeekWritable key, Iterator<IntWritable> values, OutputCollector<BoroughWeekWritable, Text> output, Reporter reporter)throws IOException {
+	public void reduce(BoroughWeekWritable key, Iterator<IntWritable> values, OutputCollector<Text, Text> output, Reporter reporter)throws IOException {
 		Text out = new Text();
 		
-		double totalLethalAccidents = 0;
-		int numberAccidents = 0;
-
+		int totalLethalAccidents = 0;
+		int totalAccidents = 0;
 		
 		while (values.hasNext()) {
 			totalLethalAccidents += values.next().get();
-			numberAccidents ++;
+			totalAccidents ++;
         }
-		out.set(String.valueOf(numberAccidents) + "\t" + String.valueOf(totalLethalAccidents / numberAccidents));
-		output.collect(key, out);
+		out.set(String.valueOf(totalLethalAccidents) + "," + String.valueOf(totalAccidents));
+		output.collect(key.getBorough(), out);
 	}
 }

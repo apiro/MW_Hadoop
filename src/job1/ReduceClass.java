@@ -15,10 +15,14 @@ public class ReduceClass extends MapReduceBase implements Reducer<Text, IntWrita
 	@Override
 	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output, Reporter reporter)throws IOException {
 		int deaths = 0;
+		
+		// For each value in the group
 		while (values.hasNext()) {
+			// Count the number of deaths
             deaths += Integer.parseInt(values.next().toString());
         }
 		
+		// Write output to file
 		output.collect(key, new IntWritable(deaths));
 	}
 
