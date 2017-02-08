@@ -17,12 +17,14 @@ import org.apache.hadoop.util.ToolRunner;
  * Number of accidents and average number of deaths per contributing factor in the dataset
  * Map -> 
  * for each accident, 
- * 		for each contributing factor	
- * 			set # deaths
+ * 		for each contributing factor (if not already counted)
+ * 			output(ContributionFactor, #deaths)
  * 
  * reduce ->
  * for each record in the map
- * 		output: contributing factor, sum of deaths / # contributing factors, accidents = number of factors /w same value
+ * 		sum all the deaths
+ * 		keep counter of number of contribution factors
+ * 		output: contributing factor, sum of deaths / #counter, accidents = counter
  */
 public class MyJob extends Configured implements Tool{
 	
