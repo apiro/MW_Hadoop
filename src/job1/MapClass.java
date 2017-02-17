@@ -40,8 +40,12 @@ public class MapClass extends MapReduceBase implements Mapper<Text, Text, Text, 
 			// deathsCounter += Integer.parseInt(tokens[12]==""?"0":tokens[12]);
 			// deathsCounter += Integer.parseInt(tokens[14]==""?"0":tokens[14]);
 			// deathsCounter += Integer.parseInt(tokens[16]==""?"0":tokens[16]);
+			if (deathsCounter > 0){
+				output.collect(new Text(weekYear), new IntWritable(1));
+			}else{
+				output.collect(new Text(weekYear), new IntWritable(0));
+			}
 			
-			output.collect(new Text(weekYear), new IntWritable(deathsCounter));
 		} catch (Exception e) {
 			System.out.println(value.toString());
 			e.printStackTrace();
