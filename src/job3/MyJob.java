@@ -4,17 +4,15 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.FileInputFormat;
 import org.apache.hadoop.mapred.FileOutputFormat;
+import org.apache.hadoop.mapred.JobClient;
 import org.apache.hadoop.mapred.JobConf;
-import org.apache.hadoop.mapred.KeyValueTextInputFormat;
 import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
-import org.apache.hadoop.mapreduce.lib.jobcontrol.ControlledJob;
-import org.apache.hadoop.mapreduce.lib.jobcontrol.JobControl;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+
 
 /**
  * Average number of accidents and average number of lethal accidents per week per borough
@@ -55,21 +53,18 @@ import org.apache.hadoop.util.ToolRunner;
  */
 public class MyJob extends Configured implements Tool{
 	
-	private static String intermediate = "/temp";
-	
 	@Override
 	public int run(String[] arg0) throws Exception {
 		Configuration conf = getConf();
 		
-		/* Job 1 */
         JobConf jobConf1 = new JobConf(conf, MyJob.class);
 
         Path in = new Path(arg0[0]);
-        Path out = new Path(intermediate);
+        Path out = new Path(arg0[1]);
         FileInputFormat.setInputPaths(jobConf1, in);
         FileOutputFormat.setOutputPath(jobConf1, out);
 
-        jobConf1.setJobName("Job3 Begin");
+        jobConf1.setJobName("Job");
         jobConf1.setMapperClass(MapClass.class);
         jobConf1.setReducerClass(ReduceClass.class);
         jobConf1.setInputFormat(TextInputFormat.class);
@@ -79,8 +74,9 @@ public class MyJob extends Configured implements Tool{
         jobConf1.setOutputKeyClass(BoroughWeekWritable.class);
         jobConf1.setOutputValueClass(IntWritable.class);
         
+        JobClient.runJob(jobConf1);
         
-        JobConf jobConf2 = new JobConf(conf, MyJob.class);
+        /*JobConf jobConf2 = new JobConf(conf, MyJob.class);
         
         Path in2 = new Path(intermediate);
 	    Path out2 = new Path(arg0[1]);
@@ -98,8 +94,8 @@ public class MyJob extends Configured implements Tool{
 	    jobConf2.setOutputKeyClass(Text.class);
 	    jobConf2.setOutputValueClass(Text.class);
 
-        ControlledJob job1 = new ControlledJob(jobConf1);
-        ControlledJob job2 = new ControlledJob(jobConf2);
+        Job job1 = new Job(jobConf1);
+        Job job2 = new Job(jobConf2);
         JobControl jobControl = new JobControl("Chaining");
         jobControl.addJob(job1);
         jobControl.addJob(job2);
@@ -116,7 +112,7 @@ public class MyJob extends Configured implements Tool{
             // Ignore. 
           } 
         } 
-        
+        */
         return 0;
 	}
 	

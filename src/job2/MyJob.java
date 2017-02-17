@@ -32,7 +32,6 @@ public class MyJob extends Configured implements Tool{
 	public int run(String[] arg0) throws Exception {
 		Configuration conf = getConf();
 		
-		/* Job 1 */
         JobConf jobConf1 = new JobConf(conf, MyJob.class);
 
         Path in = new Path(arg0[0]);

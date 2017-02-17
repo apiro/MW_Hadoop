@@ -16,15 +16,18 @@ public class ReduceClass extends MapReduceBase implements Reducer<BoroughWeekWri
 	@Override
 	public void reduce(BoroughWeekWritable key, Iterator<IntWritable> values, OutputCollector<Text, Text> output, Reporter reporter)throws IOException {
 		Text out = new Text();
+		Text keyOut = new Text();
 		
-		int totalLethalAccidents = 0;
+		double totalLethalAccidents = 0;
 		int totalAccidents = 0;
 		
 		while (values.hasNext()) {
 			totalLethalAccidents += values.next().get();
 			totalAccidents ++;
         }
-		out.set(String.valueOf(totalLethalAccidents) + "," + String.valueOf(totalAccidents));
-		output.collect(key.getBorough(), out);
+		out.set(String.valueOf(totalAccidents) + "," + String.valueOf(totalLethalAccidents/totalAccidents));
+		keyOut.set(key.getBorough().toString() + " - " + key.getWeek().toString());
+
+		output.collect(keyOut, out);
 	}
 }
