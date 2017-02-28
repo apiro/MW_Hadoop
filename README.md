@@ -1,10 +1,10 @@
 # Project Hadoop for the course Middleware Technologies for Distributed Systems, year 2016-17
 
-(Course Page)[http://corsi.dei.polimi.it/distsys/]
+[Course Page](http://corsi.dei.polimi.it/distsys/)
 
 ## Project description
 
-The goal of this project is to infer qualitative data regarding the car accidents in New York City. Start by downloading the data set from (here) [http://home.deib.polimi.it/guinea/Materiale/Middleware/index.html].
+The goal of this project is to infer qualitative data regarding the car accidents in New York City. Start by downloading the data set from [here](http://home.deib.polimi.it/guinea/Materiale/Middleware/index.html).
 
 Each row in the data set contains the following data: DATE, TIME, BOROUGH, ZIP CODE, LATITUDE, LONGITUDE, LOCATION, ON STREET NAME, CROSS STREET NAME, OFF STREET NAME, NUMBER OF PERSONS INJURED, NUMBER OF PERSONS KILLED, NUMBER OF PEDESTRIANS INJURED, NUMBER OF PEDESTRIANS KILLED, NUMBER OF CYCLIST INJURED, NUMBER OF CYCLIST KILLED, NUMBER OF MOTORIST INJURED, NUMBER OF MOTORIST KILLED, CONTRIBUTING FACTOR VEHICLE 1, CONTRIBUTING FACTOR VEHICLE 2, CONTRIBUTING FACTOR VEHICLE 3, CONTRIBUTING FACTOR VEHICLE 4, CONTRIBUTING FACTOR VEHICLE 5, UNIQUE KEY, VEHICLE TYPE CODE 1, VEHICLE TYPE CODE 2, VEHICLE TYPE CODE 3, VEHICLE TYPE CODE 4, VEHICLE TYPE CODE 5
 
