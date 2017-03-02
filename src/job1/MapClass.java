@@ -16,9 +16,9 @@ public class MapClass extends MapReduceBase implements Mapper<Text, Text, Text, 
 	@Override
 	public void map(Text key, Text value, OutputCollector<Text, IntWritable> output, Reporter arg3) throws IOException {
 		try {
+			
 			String line = value.toString();
 			String weekYear = "";
-			int deathsCounter = 0;
 			
 			// Extraction of the week and year information from the date of the incident
 			DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
@@ -32,18 +32,13 @@ public class MapClass extends MapReduceBase implements Mapper<Text, Text, Text, 
 			// Non usare StrinkTokenizer, dato che salta i tokens vuoti
 			String[]tokens = line.split(",\\s*(?=([^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 			
-			// This is the number of people killed
-			deathsCounter = Integer.parseInt(tokens[10]==""?"0":tokens[10]);
-			
-			// These are the number of people killed per cathegory -> Pedestrian, cyclist, motocyclist 
-			// So i don't need them for the calculations
-			// deathsCounter += Integer.parseInt(tokens[12]==""?"0":tokens[12]);
-			// deathsCounter += Integer.parseInt(tokens[14]==""?"0":tokens[14]);
-			// deathsCounter += Integer.parseInt(tokens[16]==""?"0":tokens[16]);
-			if (deathsCounter > 0){
-				output.collect(new Text(weekYear), new IntWritable(1));
-			}else{
-				output.collect(new Text(weekYear), new IntWritable(0));
+			try { 
+				if(Integer.parseInt(tokens[10]) > 0) {
+					output.collect(new Text(weekYear), new IntWritable(1));
+				}
+				
+			}catch (NumberFormatException e) {
+				e.printStackTrace();
 			}
 			
 		} catch (Exception e) {

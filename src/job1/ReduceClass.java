@@ -19,7 +19,7 @@ public class ReduceClass extends MapReduceBase implements Reducer<Text, IntWrita
 		// For each value in the group
 		while (values.hasNext()) {
 			// Count the number of deaths
-            deaths += Integer.parseInt(values.next().toString());
+            deaths += values.next().get();
         }
 		
 		// Write output to file

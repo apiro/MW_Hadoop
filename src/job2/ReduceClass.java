@@ -14,16 +14,15 @@ public class ReduceClass extends MapReduceBase implements Reducer<Text, IntWrita
 	
 	@Override
 	public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, Text> output, Reporter reporter)throws IOException {
-		Text out = new Text();
-		
-		double totalDeaths = 0;
+
+		double totalNumLethal = 0;
 		int numberAccidents = 0;
 		
 		while (values.hasNext()) {
 			numberAccidents ++;
-			totalDeaths += values.next().get();
+			totalNumLethal += values.next().get();
         }
-		out.set(String.valueOf(numberAccidents) + "\t" + String.valueOf(totalDeaths / numberAccidents));
-		output.collect(key, out);
+		
+		output.collect(key, new Text(String.valueOf(numberAccidents) + "\t" + String.valueOf(totalNumLethal / numberAccidents)));
 	}
 }

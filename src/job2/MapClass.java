@@ -19,16 +19,29 @@ public class MapClass extends MapReduceBase implements Mapper<LongWritable, Text
 		// Do not use StringTokenizer, since it skips empty records
 		String[]tokens = line.split(",\\s*(?=([^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 		
+		int deaths;
+		
+		try { 
+			deaths = Integer.parseInt(tokens[11]);
+			
+		}catch (NumberFormatException e) {
+			deaths = 0;
+		}
+		
 		// Loop through all the columns of the contribution factors 
 		for (int i = 18; i <= 22 ; i ++){
-			if (!tokens[i].isEmpty()){ // if contribution factor is not empty
+			if (!tokens[i].equals("")){ // if contribution factor is not empty
 				
 				// If the contribution factor is the same of one of this accident,
 				// then don't count it as an other accident, otherwise
 				// keep track of the accident -> toCount = 1				
 				if (!tmp_factors.contains(tokens[i])){
 					tmp_factors.add(tokens[i]);
-					output.collect(new Text(tokens[i]), new IntWritable(Integer.parseInt(tokens[11])));
+					if(deaths > 0) {
+						output.collect(new Text(tokens[i]), new IntWritable(1));
+					} else {
+						output.collect(new Text(tokens[i]), new IntWritable(0));
+					}
 				}
 			}
 		}
