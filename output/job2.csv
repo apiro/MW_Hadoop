@@ -1,20 +1,20 @@
 Accelerator Defective	431	0.0
 Aggressive Driving/Road Rage	3303	0.0018165304268846503
-Alcohol Involvement	7807	0.004355065966440374
+Alcohol Involvement	7807	0.004098885615473293
 Animals Action	500	0.0
-Backing Unsafely	28695	6.969855375500958E-4
+Backing Unsafely	28695	6.621362606725911E-4
 Brakes Defective	2529	0.0
 Cell Phone (hand-held)	127	0.0
 Cell Phone (hands-free)	231	0.0
-Driver Inattention/Distraction	127004	9.369783628862083E-4
-Driver Inexperience	13132	9.899482180932074E-4
+Driver Inattention/Distraction	127004	8.976095241094769E-4
+Driver Inexperience	13132	7.614986293024672E-4
 Driverless/Runaway Vehicle	70	0.0
 Drugs (Illegal)	569	0.005272407732864675
 Failure to Keep Right	2021	0.0
-Failure to Yield Right-of-Way	44463	0.0020691361356633604
+Failure to Yield Right-of-Way	44463	0.0020466455254931066
 Fatigued/Drowsy	54844	5.470060535336591E-5
 Fell Asleep	1562	0.005121638924455826
-Following Too Closely	8297	0.0019284078582620225
+Following Too Closely	8297	0.001807882367120646
 Glare	2018	4.955401387512388E-4
 Headlights Defective	75	0.0
 Illness	2624	0.0011432926829268292
@@ -39,10 +39,10 @@ Steering Failure	861	0.0
 Tire Failure/Inadequate	877	0.0011402508551881414
 Tow Hitch Defective	90	0.011111111111111112
 Traffic Control Device Improper/Non-Working	441	0.0
-Traffic Control Disregarded	13715	0.011009843237331389
+Traffic Control Disregarded	13715	0.00962449872402479
 Turning Improperly	25828	1.9358835372463993E-4
 Unsafe Lane Changing	3460	0.0
 Unsafe Speed	2477	0.0036334275333064193
-Unspecified	793383	9.831317283077656E-4
+Unspecified	793383	9.453189695266976E-4
 View Obstructed/Limited	4139	0.002174438270113554
 Windshield Inadequate	51	0.0
